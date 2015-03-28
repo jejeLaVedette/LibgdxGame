@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="testDeco" tilewidth="32" tileheight="32">
+  <image source="testDeco.png" width="256" height="832"/>
+ </tileset>
+ <tileset firstgid="209" name="elementDeco" tilewidth="32" tileheight="32">
+  <image source="elementDeco.png" width="256" height="480"/>
+ </tileset>
+ <layer name="Calque de Tile 1" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eJzt16ENwDAMRFGvFBW1Rdl/A08Tm54CLlLgBx9YivxMkxGRRqN6pSE5e7qn+sy37UxJ73Dd/8Cdm1lz3Txwb4eLi4uLi4uLi4uLi7ur/0cLuprbkg==
+  </data>
+ </layer>
+ <layer name="Calque 2" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eJzt0jcKAkEUgOHVQtDG0Bgaww0MjaERvIw555xDozfxiv7CLIgozArOiuyDDx4MvL+ZhKZpcQlFlFBGBVWhhjoaknfuksggLaGJFtrooCv00MdA8s5dFlfkJQwxwhgTTIUZ5lhI3smLruwsscIaG2yFHfY4GLhlpHvE6c3bGZc3bzbYn3Yj3U/HDY/YnXAp6voRELsXPhO6QYQUdcOIiD2KmKLuq1HR/YX/rO+q/5W+/3P38T/r+z//Z6v7W92USd2cSd2CSV0VY3Wt7re6jg+8GqM3bowsK9A=
+  </data>
+ </layer>
+ <layer name="Calque 3" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztzjsSQEAQBuG9GBn3RbREiKxLbR/Bq0bSX1WHU/+kJOmJhtofdjvqX9wPNNL0zTuXZZppCd5daaM9ePegQmfwriRJ0h0VT5IJ7w==
+  </data>
+ </layer>
+</map>
