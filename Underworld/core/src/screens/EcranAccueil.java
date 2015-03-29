@@ -6,6 +6,7 @@ import game.Underworld;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -26,10 +27,11 @@ import constantes.Constantes;
 
 public class EcranAccueil extends Game implements Screen{
 
-	Stage stage;
-	Underworld game;
-	Texture background;
-	Texture btnUp,btnDown,btnChecked;
+	private Stage stage;
+	private Underworld game;
+	private Texture background;
+	private Texture btnUp,btnDown,btnChecked;
+	private Music music;
 
 	public EcranAccueil (Underworld game){this.game = game;    }
 	@Override
@@ -53,6 +55,11 @@ public class EcranAccueil extends Game implements Screen{
 
 	@Override
 	public void show() {
+
+		music=Gdx.audio.newMusic(Gdx.files.internal("sons/Intro.wav"));
+		music.setLooping(true);
+		music.play();
+		
 		background = new Texture(Gdx.files.internal("ihmGame/fond.png"));
 
 		btnUp = new Texture(Gdx.files.internal("ui/fondBleu.png"));
@@ -86,7 +93,7 @@ public class EcranAccueil extends Game implements Screen{
 		styleBouton.over = new TextureRegionDrawable(new TextureRegion(btnDown));
 		
 		TextButton btnJouer = new TextButton("Jouer",styleBouton);
-		TextButton btnParam = new TextButton("Parametres",styleBouton);
+		TextButton btnParam = new TextButton("GameOver",styleBouton);
 		TextButton btnQuit = new TextButton("quitter",styleBouton);
 		btnJouer.setPosition(Gdx.graphics.getWidth()/2-btnJouer.getWidth()/2, 150);btnJouer.setSize(100, 50);
 		btnParam.setPosition(Gdx.graphics.getWidth()/2-btnParam.getWidth()/2, 100);btnParam.setSize(100, 50);
@@ -95,11 +102,20 @@ public class EcranAccueil extends Game implements Screen{
 		/*
 		 * ecoute des btns
 		 */
+		btnParam.addListener(new ClickListener() {
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
+			{
+				game.setScreen(new GameOver(game));
+				music.stop();
+				return false;    
+			}
+		});
 		
 		btnJouer.addListener(new ClickListener() {
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
 			{
 				game.setScreen(new Map(game));
+				music.stop();
 				return false;    
 			}
 		});
@@ -109,6 +125,7 @@ public class EcranAccueil extends Game implements Screen{
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
 			{
 				Gdx.app.exit();
+				music.stop();
 				return false;    
 			}
 		});
@@ -140,7 +157,8 @@ public class EcranAccueil extends Game implements Screen{
 	@Override
 	public void dispose() {
 		stage.dispose();
-		background.dispose();        
+		background.dispose();     
+		music.dispose();
 	}
 	@Override
 	public void create() {

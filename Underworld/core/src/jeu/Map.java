@@ -9,6 +9,7 @@ import heros.Animator;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -59,6 +60,7 @@ public class Map extends Game implements Screen {
 	private BitmapFont font;
 	private SpriteBatch spriteBatch;
 	private boolean dejaCreer=false;
+	private Music music;
 
 	public Map(Underworld game){
 		this.game=game;
@@ -105,11 +107,16 @@ public class Map extends Game implements Screen {
 
 	@Override
 	public void show() {
+		
+		/*
+		 * sound
+		 */
+		
 		/*
 		 * Map power
 		 */
 		TmxMapLoader loader = new TmxMapLoader();//création du loader de carte
-		map = loader.load("map/map1.tmx");//chargement de la carte
+		map = loader.load("map/labo.tmx");//chargement de la carte
 		renderer = new OrthogonalTiledMapRenderer(map);//création du renderer
 
 		/*
@@ -148,6 +155,12 @@ public class Map extends Game implements Screen {
 
 			xhero=tailleMapX/2;
 			yhero=tailleMapY/2 - (walkSheet.getHeight()/(map.getProperties().get("height", Integer.class)) );
+
+			music=Gdx.audio.newMusic(Gdx.files.internal("sons/Prelude.wav"));
+			music.setLooping(true);
+			music.play();
+//			xhero=100;
+//			yhero=100;
 			
 		} else {
 			updatePictureFixe(valDeplacement);
@@ -274,7 +287,7 @@ public class Map extends Game implements Screen {
 				inAngleHeight = true;
 			}
 		} else if (Gdx.input.isKeyPressed(Keys.ESCAPE)){
-			//System.out.println("Map x:"+);
+			
 			game.setScreen(new Inventaire(game,xhero,yhero,valDeplacement));
 			
 		} else { // on appuit sur rien
